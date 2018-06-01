@@ -9,7 +9,7 @@ The robot is free to roam around the surface of the table, but cannot fall to de
 See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 
 ## How to build the application
-- [ ] Add build instructions
+- [ ] TODO - _Add build instructions_
 
 ## How to play
 Enter commands (via stdin) in the following form:
