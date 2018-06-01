@@ -16,17 +16,34 @@ public class CommandFactory {
     private static final Logger logger = LoggerFactory.getLogger(CommandFactory.class.getName());
 
     // TODO - whitespace before?
+    // TODO - make 4 a const
     private static final Pattern VALID_INSTRUCTION = Pattern.compile("^(\\?|MOVE|LEFT|RIGHT|REPORT|PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST))$");
 
     public static Command make(String input) {
+        Command command = null;
         Matcher matcher = VALID_INSTRUCTION.matcher(input);
+
         // see if we have any matches..
-        while (matcher.find()) {
-            logger.debug("Start index: " + matcher.start());
-            logger.debug(" End index: " + matcher.end() + " ");
-            logger.debug(matcher.group());
+        if (matcher.find()) {
+            logger.debug("Valid instruction received");
+
+            String groupOne = matcher.group(0);
+            if (groupOne.startsWith("PLACE")) {
+                // parsing of String to int is safe due to the use of the regex..
+                command = new PlaceCommand(Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)),matcher.group(4));
+            } else {
+                switch (groupOne) {
+                    case "REPORT":
+                        command = new ReportCommand();
+                        break;
+                    default:
+                        // TODO
+                        break;
+                }
+            }
+
         }
 
-        return null; // TODO
+        return command; // TODO - error handling
     }
 }
