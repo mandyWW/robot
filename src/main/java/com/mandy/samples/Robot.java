@@ -1,5 +1,8 @@
 package com.mandy.samples;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Simulates a robot who receives commands to move across a board.
  *
@@ -7,8 +10,12 @@ package com.mandy.samples;
  */
 public class Robot {
 
-    public void move() {
-        // TODO
+    private static final Logger logger = LoggerFactory.getLogger(Robot.class.getName());
+
+    Location currentLocation;
+
+    public void move(Location newLocation) {
+        currentLocation = newLocation;
     }
 
     public void rotate() {
@@ -19,8 +26,8 @@ public class Robot {
         // TODO
     }
 
-    public void getLocation() {
-        // TODO
+    public Location getLocation() {
+        return currentLocation;
     }
 
 

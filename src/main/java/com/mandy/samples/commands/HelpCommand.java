@@ -5,7 +5,7 @@ package com.mandy.samples.commands;
  *
  * @author Mandy Warren
  */
-public class HelpCommand implements Command {
+public class HelpCommand extends Command {
 
     @Override
     public void execute() {

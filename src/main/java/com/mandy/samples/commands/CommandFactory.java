@@ -1,5 +1,7 @@
 package com.mandy.samples.commands;
 
+import com.mandy.samples.Direction;
+import com.mandy.samples.Robot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -11,30 +13,37 @@ import java.util.regex.Pattern;
  *
  * @author Mandy Warren
  */
-public class CommandFactory {
+public final class CommandFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(CommandFactory.class.getName());
+    private static CommandHistory commandHistory = new CommandHistory();
+
 
     // TODO - whitespace before?
     // TODO - make 4 a const
     private static final Pattern VALID_INSTRUCTION = Pattern.compile("^(\\?|MOVE|LEFT|RIGHT|REPORT|PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST))$");
 
-    public static Command make(String input) throws UnsupportedOperationException {
+    public static Command make(String input, Robot robot) throws UnsupportedOperationException {
         Command command = null;
         Matcher matcher = VALID_INSTRUCTION.matcher(input);
 
         // see if we have any matches..
         if (matcher.find()) {
-            logger.debug("Valid instruction received");
+            logger.debug("valid instruction received");
 
             String groupOne = matcher.group(0);
             if (groupOne.startsWith("PLACE")) {
                 // parsing of String to int is safe due to the use of the regex..
-                command = new PlaceCommand(Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)),matcher.group(4));
+                command = new PlaceCommand(robot, Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)),Direction.valueOf(matcher.group(4)));
             } else {
                 switch (groupOne) {
                     case "REPORT":
-                        command = new ReportCommand();
+                        // ensure a PLACE has been made previously..
+                        if (commandHistory.exists(new PlaceCommand(robot))) {
+                            command = new ReportCommand(robot);
+                        } else {
+                            throw new UnsupportedOperationException("Cannot REPORT until a PLACE command has been issued");
+                        }
                         break;
                     default:
                         // TODO
@@ -42,6 +51,7 @@ public class CommandFactory {
                 }
             }
 
+            commandHistory.push(command);
         } else {
             // could have made my own exception hierarchy but this seemed to do the job nicely..
             throw new UnsupportedOperationException();

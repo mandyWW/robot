@@ -15,10 +15,9 @@ import java.util.Scanner;
  */
 final class CommandReader {
     private static final Logger logger = LoggerFactory.getLogger(CommandReader.class.getName());
-    private Robot robot = new Robot();
-
 
     static void read() {
+        Robot robot = new Robot();
 
         try (Scanner scanner = new Scanner(System.in)){
             while (true) {
@@ -31,11 +30,12 @@ final class CommandReader {
                 }
 
                 try {
-                    Command command = CommandFactory.make(input);
+                    Command command = CommandFactory.make(input, robot);
                     command.execute();
                 } catch (UnsupportedOperationException e) {
                     // we'll log this but let things carry on..
-                    logger.error("Unsupported command encountered");
+                    // TODO - as logging twice
+                    logger.error(e.getMessage());
                 }
             }
         }
