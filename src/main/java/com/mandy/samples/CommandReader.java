@@ -13,18 +13,16 @@ import java.util.Scanner;
  *
  * @author Mandy Warren
  */
-public final class CommandReader {
+final class CommandReader {
     private static final Logger logger = LoggerFactory.getLogger(CommandReader.class.getName());
     private Robot robot = new Robot();
 
 
-    public static void read() {
+    static void read() {
 
-        Scanner scanner = new Scanner(System.in);
-
-        try {
+        try (Scanner scanner = new Scanner(System.in)){
             while (true) {
-                logger.info("Enter a command or <?> for help: ");
+                logger.info("Enter a valid command or <?> for help: ");
                 String input = scanner.nextLine();
 
                 if ("q".equals(input)) {
@@ -32,12 +30,14 @@ public final class CommandReader {
                     break;
                 }
 
-                Command command = CommandFactory.make(input);
-                command.execute();
-
+                try {
+                    Command command = CommandFactory.make(input);
+                    command.execute();
+                } catch (UnsupportedOperationException e) {
+                    // we'll log this but let things carry on..
+                    logger.error("Unsupported command encountered");
+                }
             }
-        } finally {
-            scanner.close();
         }
     }
 }

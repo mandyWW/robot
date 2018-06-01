@@ -19,7 +19,7 @@ public class CommandFactory {
     // TODO - make 4 a const
     private static final Pattern VALID_INSTRUCTION = Pattern.compile("^(\\?|MOVE|LEFT|RIGHT|REPORT|PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST))$");
 
-    public static Command make(String input) {
+    public static Command make(String input) throws UnsupportedOperationException {
         Command command = null;
         Matcher matcher = VALID_INSTRUCTION.matcher(input);
 
@@ -42,6 +42,9 @@ public class CommandFactory {
                 }
             }
 
+        } else {
+            // could have made my own exception hierarchy but this seemed to do the job nicely..
+            throw new UnsupportedOperationException();
         }
 
         return command; // TODO - error handling
