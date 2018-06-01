@@ -5,6 +5,9 @@ Toy Robot Simulator
 The application is a simulation of a toy robot moving on a square tabletop, of dimensions 5 units x 5 units.
 The robot is free to roam around the surface of the table, but cannot fall to destruction. Any movement that would result in the robot falling from the table are prevented, however further valid movement commands are still allowed.
 
+## Build instructions
+See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
+
 ## How to play
 Enter commands (via stdin) in the following form:
 
