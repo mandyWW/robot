@@ -1,6 +1,6 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.Direction;
+import com.mandy.samples.CompassDirection;
 import com.mandy.samples.Location;
 import com.mandy.samples.Robot;
 import org.slf4j.Logger;
@@ -20,7 +20,8 @@ public class PlaceCommand extends Command {
 
     /**
      * Constructs a new PlaceCommand for the robot, using default x and y coordinates and direction
-     * @param robot the robot being places
+     *
+     * @param robot the robot being placed
      */
     PlaceCommand(Robot robot) {
     }
@@ -30,18 +31,17 @@ public class PlaceCommand extends Command {
      * @param robot the robot being places
      * @param xCoord the x coordinate
      * @param yCoord the y coordinate
-     * @param direction the direction
+     * @param compassDirection the direction
      */
-    PlaceCommand(Robot robot, int xCoord, int yCoord, Direction direction) {
+    PlaceCommand(Robot robot, int xCoord, int yCoord, CompassDirection compassDirection) {
         super(robot);
-        location = new Location(xCoord, yCoord, direction);
+        location = new Location(xCoord, yCoord, compassDirection);
     }
 
     @Override
     public void execute() {
-        // TODO - robot.move(X,Y,F)
         logger.debug("executing a PLACE command");
-        robot.move(location);
+        robot.place(location);
     }
 
     // TODO - override hashcode?

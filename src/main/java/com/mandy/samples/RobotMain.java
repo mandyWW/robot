@@ -3,8 +3,6 @@ package com.mandy.samples;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.Scanner;
-
 /**
  * Starting point for the Robot application.
  *

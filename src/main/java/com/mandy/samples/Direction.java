@@ -1,16 +1,11 @@
 package com.mandy.samples;
 
 /**
- * Represents a point on a compass
+ * Represents a direction in which to move.
  *
  * @author Mandy Warren
  */
 public enum Direction {
 
-    NORTH, EAST, SOUTH, WEST;
-
-    @Override
-    public String toString() {
-        return(this.name());
-    }
+    LEFT, RIGHT;
 }

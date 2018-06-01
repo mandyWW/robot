@@ -1,5 +1,6 @@
 package com.mandy.samples.commands;
 
+import com.mandy.samples.CompassDirection;
 import com.mandy.samples.Direction;
 import com.mandy.samples.Robot;
 import org.slf4j.Logger;
@@ -34,7 +35,7 @@ public final class CommandFactory {
             String groupOne = matcher.group(0);
             if (groupOne.startsWith("PLACE")) {
                 // parsing of String to int is safe due to the use of the regex..
-                command = new PlaceCommand(robot, Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)),Direction.valueOf(matcher.group(4)));
+                command = new PlaceCommand(robot, Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), CompassDirection.valueOf(matcher.group(4)));
             } else {
                 switch (groupOne) {
                     case "REPORT":
@@ -44,6 +45,26 @@ public final class CommandFactory {
                         } else {
                             throw new UnsupportedOperationException("Cannot REPORT until a PLACE command has been issued");
                         }
+                        break;
+                    case "LEFT":
+                    case "RIGHT":
+                        // ensure a PLACE has been made previously..
+                        if (commandHistory.exists(new PlaceCommand(robot))) {
+                            command = new RotateCommand(robot, Direction.valueOf(groupOne));
+                        } else {
+                            throw new UnsupportedOperationException("Cannot rotate LEFT/RIGHT until a PLACE command has been issued");
+                        }
+                        break;
+                    case "MOVE":
+                        // ensure a PLACE has been made previously..
+                        if (commandHistory.exists(new PlaceCommand(robot))) {
+                            command = new MoveCommand(robot);
+                        } else {
+                            throw new UnsupportedOperationException("Cannot MOVE until a PLACE command has been issued");
+                        }
+                        break;
+                    case "?":
+                        command = new HelpCommand();
                         break;
                     default:
                         // TODO
@@ -58,5 +79,9 @@ public final class CommandFactory {
         }
 
         return command; // TODO - error handling
+    }
+
+    public CommandHistory getCommandHistory() {
+        return commandHistory;
     }
 }

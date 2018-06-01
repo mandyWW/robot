@@ -1,8 +1,7 @@
 package com.mandy.samples;
 
-import com.mandy.samples.commands.CommandFactory;
 import com.mandy.samples.commands.Command;
-
+import com.mandy.samples.commands.CommandFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
