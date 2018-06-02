@@ -2,6 +2,7 @@ package com.mandy.samples.commands;
 
 
 import com.mandy.samples.Robot;
+import com.mandy.samples.exceptions.CommandExecutionFailedException;
 
 /**
  * Represents an action that the robot must perform.
@@ -18,6 +19,8 @@ public abstract class Command {
 
     /**
      * Executes the command.
+     *
+     * @throws CommandExecutionFailedException if command execution fails
      */
-    public abstract void execute();
+    public abstract void execute() throws CommandExecutionFailedException;
 }

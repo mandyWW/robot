@@ -1,6 +1,8 @@
 package com.mandy.samples.commands;
 
 import com.mandy.samples.Robot;
+import com.mandy.samples.exceptions.CommandExecutionFailedException;
+import com.mandy.samples.exceptions.InvalidStateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,8 +25,12 @@ public class ReportCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws CommandExecutionFailedException {
         logger.debug("executing a REPORT command");
-        robot.report();
+        try {
+            robot.report();
+        } catch (InvalidStateException e) {
+            throw new CommandExecutionFailedException("REPORT command failed", e);
+        }
     }
 }

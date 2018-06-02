@@ -2,6 +2,8 @@ package com.mandy.samples.commands;
 
 import com.mandy.samples.Direction;
 import com.mandy.samples.Robot;
+import com.mandy.samples.exceptions.CommandExecutionFailedException;
+import com.mandy.samples.exceptions.InvalidStateException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,9 +29,13 @@ public class RotateCommand extends Command {
     }
 
     @Override
-    public void execute() {
+    public void execute() throws CommandExecutionFailedException {
         logger.debug("executing a ROTATE command");
-        robot.rotate(direction);
+        try {
+            robot.rotate(direction);
+        } catch (InvalidStateException e) {
+            throw new CommandExecutionFailedException("ROTATE command failed", e);
+        }
     }
 
 }
