@@ -6,7 +6,9 @@ The robot is free to roam around the surface of the table, but cannot fall to de
 See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 
 ## How to build the application
-- [ ] TODO - _Add build instructions_
+Ensure you have the maven command line tools installed.
+
+Run `mvn install`
 
 ## How to play
 Enter commands (via stdin) in the following form:
