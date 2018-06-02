@@ -5,10 +5,12 @@ The robot is free to roam around the surface of the table, but cannot fall to de
 ## Application design
 See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 
-## How to build the application
+## How to build and run the application
 Ensure you have the maven command line tools installed.
 
-Run `mvn install`
+Run `mvn install` to compile the code, run the associated unit tests and create the required binaries.
+
+Run the main class `RobotMain`.
 
 ## How to play
 Enter commands (via stdin) in the following form:
