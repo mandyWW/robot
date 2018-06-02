@@ -2,6 +2,8 @@ package com.mandy.samples;
 
 /**
  * Represents a position on a square tabletop.
+ *
+ * @author Mandy Warren
  */
 public class Location {
 
@@ -9,21 +11,28 @@ public class Location {
     private int yCoord;
     private CompassDirection compassDirection;
 
+    /**
+     * Constructs a new Location with the specified detail.
+     *
+     * @param xCoord the x coordinate
+     * @param yCoord the y coordinate
+     * @param compassDirection the compass direction
+     */
     public Location(int xCoord, int yCoord, CompassDirection compassDirection) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
         this.compassDirection = compassDirection;
     }
 
-    int getXCoord() {
+    public int getXCoord() {
         return xCoord;
     }
 
-    int getYCoord() {
+    public int getYCoord() {
         return yCoord;
     }
 
-    CompassDirection getCompassDirection() {
+    public CompassDirection getCompassDirection() {
         return compassDirection;
     }
 
@@ -32,12 +41,5 @@ public class Location {
         return(xCoord +","+ yCoord + "," + compassDirection);
     }
 
-
-    /**
-     * Outputs an ascii representation of the location on the tabletop
-     */
-//    public String toAscii() {
-//
-//    }
 
 }

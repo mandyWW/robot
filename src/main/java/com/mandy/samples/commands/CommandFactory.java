@@ -3,6 +3,8 @@ package com.mandy.samples.commands;
 import com.mandy.samples.CompassDirection;
 import com.mandy.samples.Direction;
 import com.mandy.samples.Robot;
+import com.mandy.samples.exceptions.InvalidStateException;
+import com.mandy.samples.exceptions.UnsupportedCommandException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,15 +19,22 @@ import java.util.regex.Pattern;
 public final class CommandFactory {
 
     private static final Logger logger = LoggerFactory.getLogger(CommandFactory.class.getName());
-    private static CommandHistory commandHistory = new CommandHistory();
 
-
-    // TODO - whitespace before?
-    // TODO - make 4 a const
     private static final Pattern VALID_INSTRUCTION = Pattern.compile("^(\\?|MOVE|LEFT|RIGHT|REPORT|PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST))$");
 
-    public static Command make(String input, Robot robot) throws UnsupportedOperationException {
-        Command command = null;
+    private static CommandHistory commandHistory = new CommandHistory();
+
+    /**
+     * Constructs a command from user input.
+     *
+     * @param input user input
+     * @param robot the robot to which the command will be issued
+     * @return the command
+     * @throws InvalidStateException if the preconditions for running the command have not been met
+     * @throws UnsupportedCommandException if an unrecognised input is received
+     */
+    public static Command make(String input, Robot robot) throws InvalidStateException, UnsupportedCommandException {
+        Command command;
         Matcher matcher = VALID_INSTRUCTION.matcher(input);
 
         // see if we have any matches..
@@ -43,7 +52,7 @@ public final class CommandFactory {
                         if (commandHistory.exists(new PlaceCommand(robot))) {
                             command = new ReportCommand(robot);
                         } else {
-                            throw new UnsupportedOperationException("Cannot REPORT until a PLACE command has been issued");
+                            throw new InvalidStateException("cannot REPORT until a PLACE command has been issued");
                         }
                         break;
                     case "LEFT":
@@ -52,7 +61,7 @@ public final class CommandFactory {
                         if (commandHistory.exists(new PlaceCommand(robot))) {
                             command = new RotateCommand(robot, Direction.valueOf(groupOne));
                         } else {
-                            throw new UnsupportedOperationException("Cannot rotate LEFT/RIGHT until a PLACE command has been issued");
+                            throw new InvalidStateException("cannot rotate LEFT/RIGHT until a PLACE command has been issued");
                         }
                         break;
                     case "MOVE":
@@ -60,28 +69,24 @@ public final class CommandFactory {
                         if (commandHistory.exists(new PlaceCommand(robot))) {
                             command = new MoveCommand(robot);
                         } else {
-                            throw new UnsupportedOperationException("Cannot MOVE until a PLACE command has been issued");
+                            throw new InvalidStateException("cannot MOVE until a PLACE command has been issued");
                         }
                         break;
                     case "?":
                         command = new HelpCommand();
                         break;
                     default:
-                        // TODO
-                        break;
+                        throw new UnsupportedCommandException("unrecognised command");
                 }
             }
 
             commandHistory.push(command);
         } else {
             // could have made my own exception hierarchy but this seemed to do the job nicely..
-            throw new UnsupportedOperationException("Unrecognised command");
+            throw new UnsupportedCommandException("invalid instruction received");
         }
 
-        return command; // TODO - error handling
+        return command;
     }
 
-    public CommandHistory getCommandHistory() {
-        return commandHistory;
-    }
 }

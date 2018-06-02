@@ -18,22 +18,24 @@ public class PlaceCommand extends Command {
 
     private static final Logger logger = LoggerFactory.getLogger(PlaceCommand.class.getName());
 
-    private Location location;
+    private Location location = new Location(0,0,CompassDirection.NORTH);
 
     /**
-     * Constructs a new PlaceCommand for the robot, using default x and y coordinates and direction
+     * Constructs a new PlaceCommand for the robot using the default location.
      *
      * @param robot the robot being placed
      */
     PlaceCommand(Robot robot) {
+        super(robot);
     }
 
     /**
-     * Constructs a new PlaceCommand for the robot, specifying the x and y coordinates and the direction
-     * @param robot the robot being places
+     * Constructs a new PlaceCommand for the robot, specifying the x and y coordinates and the direction to face.
+     *
+     * @param robot the robot being placed
      * @param xCoord the x coordinate
      * @param yCoord the y coordinate
-     * @param compassDirection the direction
+     * @param compassDirection the direction to face
      */
     PlaceCommand(Robot robot, int xCoord, int yCoord, CompassDirection compassDirection) {
         super(robot);
@@ -52,9 +54,9 @@ public class PlaceCommand extends Command {
         if (!(obj instanceof PlaceCommand)) {
             return false;
         } else {
-            // we only care that a previous PlaceCommand has been executed,
-            // we don't care about the coordinates/direction hence why we are
-            // overriding the "equals" method
+            // a slight cheat here - we override the equals() method to
+            // allow us to check the CommandHistory to see whether ANY previous
+            // PlaceCommand has been executed, we don't care about the coordinates/direction
             return true;
         }
     }

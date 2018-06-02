@@ -11,10 +11,19 @@ import java.util.ArrayList;
 class CommandHistory {
     private ArrayList<Command> history = new ArrayList<>(1);
 
-    void push(Command c) {
-        history.add(c);
+    /**
+     * Add a command to the history
+     * @param command the command
+     */
+    void push(Command command) {
+        history.add(command);
     }
 
+    /**
+     * Check whether a specific command type has been executed i.e. exists in the command history
+     * @param command the command
+     * @return true if the specific command type has been executed, false otherwise
+     */
     boolean exists(Command command) {
         return (history.contains(command));
     }

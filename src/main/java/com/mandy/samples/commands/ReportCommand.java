@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
  */
 public class ReportCommand extends Command {
 
-    private static final Logger logger = LoggerFactory.getLogger(PlaceCommand.class.getName());
+    private static final Logger logger = LoggerFactory.getLogger(ReportCommand.class.getName());
 
     /**
      * Constructs a new ReportCommand for the robot.
@@ -25,10 +25,6 @@ public class ReportCommand extends Command {
     @Override
     public void execute() {
         logger.debug("executing a REPORT command");
-        logger.info("Output: " + robot.getLocation().toString());
-
-//        if (commandChain.isValid(this)) {
-//
-//        }
+        robot.report();
     }
 }
