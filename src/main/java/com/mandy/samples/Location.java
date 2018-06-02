@@ -5,10 +5,8 @@ package com.mandy.samples;
  */
 public class Location {
 
-    private static final int rows = 5;
-    private static final int columns = 5;
-
-    private int xCoord, yCoord;
+    private int xCoord;
+    private int yCoord;
     private CompassDirection compassDirection;
 
     public Location(int xCoord, int yCoord, CompassDirection compassDirection) {
@@ -17,15 +15,15 @@ public class Location {
         this.compassDirection = compassDirection;
     }
 
-    public int getXCoord() {
+    int getXCoord() {
         return xCoord;
     }
 
-    public int getYCoord() {
+    int getYCoord() {
         return yCoord;
     }
 
-    public CompassDirection getCompassDirection() {
+    CompassDirection getCompassDirection() {
         return compassDirection;
     }
 

@@ -75,7 +75,7 @@ public final class CommandFactory {
             commandHistory.push(command);
         } else {
             // could have made my own exception hierarchy but this seemed to do the job nicely..
-            throw new UnsupportedOperationException();
+            throw new UnsupportedOperationException("Unrecognised command");
         }
 
         return command; // TODO - error handling

@@ -7,50 +7,71 @@ package com.mandy.samples;
  */
 public enum CompassDirection {
 
-    NORTH, EAST, SOUTH, WEST;
+    NORTH {
+        public CompassDirection anticlockwise() {
+            return WEST;
+        }
 
+        public CompassDirection clockwise() {
+            return EAST;
+        }
+    },
+
+    EAST {
+        public CompassDirection anticlockwise() {
+            return NORTH;
+        }
+
+        public CompassDirection clockwise() {
+            return SOUTH;
+        }
+    },
+
+    SOUTH {
+        public CompassDirection anticlockwise() {
+            return EAST;
+        }
+
+        public CompassDirection clockwise() {
+            return WEST;
+        }
+    },
+
+    WEST {
+        public CompassDirection anticlockwise() {
+            return SOUTH;
+        }
+
+        public CompassDirection clockwise() {
+            return NORTH;
+        }
+    };
+
+    public abstract CompassDirection anticlockwise();
+
+    public abstract CompassDirection clockwise();
+
+    /**
+     * Determins the CompassDirection pointed to after a clockwise or anticlockwise turn.
+     *
+     * @param direction whether this is a clockwise or anticlockwise turn
+     * @return the CompassDirection pointed to after a clockwise or anticlockwise turn.
+     */
     public CompassDirection turn(Direction direction) {
-
-        CompassDirection newCompassDirection = null;
 
         switch (direction) {
             case LEFT:
-                if (CompassDirection.NORTH.equals(this)) {
-                    newCompassDirection = CompassDirection.WEST;
-                }
-                if (CompassDirection.EAST.equals(this)) {
-                    newCompassDirection = CompassDirection.NORTH;
-                }
-                if (CompassDirection.SOUTH.equals(this)) {
-                    newCompassDirection = CompassDirection.EAST;
-                }
-                if (CompassDirection.WEST.equals(this)) {
-                    newCompassDirection = CompassDirection.SOUTH;
-                }
-                break;
+                return this.anticlockwise();
             case RIGHT:
-                if (CompassDirection.NORTH.equals(this)) {
-                    newCompassDirection = CompassDirection.EAST;
-                }
-                if (CompassDirection.EAST.equals(this)) {
-                    newCompassDirection = CompassDirection.SOUTH;
-                }
-                if (CompassDirection.SOUTH.equals(this)) {
-                    newCompassDirection = CompassDirection.WEST;
-                }
-                if (CompassDirection.WEST.equals(this)) {
-                    newCompassDirection = CompassDirection.NORTH;
-                }
-                break;
+                return this.clockwise();
             default:
                 throw new IllegalArgumentException("Unexpected direction");
         }
 
-        return newCompassDirection;
     }
 
     @Override
     public String toString() {
-        return(this.name());
+        return (this.name());
     }
 }

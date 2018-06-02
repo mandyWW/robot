@@ -15,6 +15,10 @@ import java.util.Scanner;
 final class CommandReader {
     private static final Logger logger = LoggerFactory.getLogger(CommandReader.class.getName());
 
+    private CommandReader() {
+
+    }
+
     static void read() {
         Robot robot = new Robot();
 

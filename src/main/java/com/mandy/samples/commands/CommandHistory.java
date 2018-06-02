@@ -1,28 +1,22 @@
 package com.mandy.samples.commands;
 
-import java.util.Stack;
+
+import java.util.ArrayList;
 
 /**
  * Holds the history of commands that have been executed.
  *
  * @author Mandy Warren
  */
-public class CommandHistory {
-    private Stack history = new Stack();
+class CommandHistory {
+    private ArrayList<Command> history = new ArrayList<>(1);
 
-    public void push(Command c) {
-        history.push(c);
+    void push(Command c) {
+        history.add(c);
     }
 
-    public Command pop() {
-        return (Command) history.pop();
-    }
-
-    public boolean exists(Command command) {
+    boolean exists(Command command) {
         return (history.contains(command));
     }
 
-    public boolean isEmpty() {
-        return history.isEmpty();
-    }
 }

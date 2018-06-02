@@ -25,7 +25,8 @@ public class MoveCommand extends Command {
     @Override
     public void execute() {
         logger.debug("executing a MOVE command");
-            robot.move();
+        // TODO - exception handling
+        robot.move();
     }
 
 }
