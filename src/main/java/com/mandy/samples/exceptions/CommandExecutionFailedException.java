@@ -7,10 +7,6 @@ package com.mandy.samples.exceptions;
  */
 public class CommandExecutionFailedException extends Exception {
 
-    public CommandExecutionFailedException(String message) {
-        super(message);
-    }
-
     public CommandExecutionFailedException(String message, Exception e) {
         super(message, e);
     }
