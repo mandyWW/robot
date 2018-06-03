@@ -1,5 +1,7 @@
 package com.mandy.samples;
 
+import java.util.Objects;
+
 /**
  * Represents a position on a square tabletop.
  *
@@ -34,6 +36,23 @@ public class Location {
 
     public CompassDirection getCompassDirection() {
         return compassDirection;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+        if (!(o instanceof Location)) {
+            return false;
+        }
+        Location location = (Location) o;
+        return xCoord == location.xCoord && yCoord == location.yCoord &&
+                Objects.equals(compassDirection, location.compassDirection);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(xCoord, yCoord, compassDirection);
     }
 
     @Override

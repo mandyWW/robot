@@ -90,7 +90,7 @@ public class Robot {
 
     public void report() throws InvalidStateException {
         if (isPlaced) {
-            logger.info("Output: " + currentLocation.toString());
+            System.out.println("Output: " + currentLocation.toString());
         } else {
             throw new InvalidStateException("PLACE command must be issued before executing a REPORT command");
         }

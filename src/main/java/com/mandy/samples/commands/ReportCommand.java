@@ -30,7 +30,7 @@ public class ReportCommand extends Command {
         try {
             robot.report();
         } catch (InvalidStateException e) {
-            throw new CommandExecutionFailedException("REPORT command failed", e);
+            throw new CommandExecutionFailedException("REPORT command failed - "+e.getMessage(), e);
         }
     }
 }

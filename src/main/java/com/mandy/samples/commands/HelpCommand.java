@@ -22,8 +22,8 @@ public class HelpCommand extends Command {
 
     @Override
     public void execute() {
-        logger.debug("executing a MOVE command");
-        logger.info("\nValid commands:\n" +
+        logger.debug("executing a HELP command");
+        System.out.println("\nValid commands:\n" +
                 "PLACE X,Y,F\n" +
                 "MOVE\n" +
                 "LEFT\n" +

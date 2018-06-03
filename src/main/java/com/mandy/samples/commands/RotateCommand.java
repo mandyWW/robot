@@ -30,11 +30,11 @@ public class RotateCommand extends Command {
 
     @Override
     public void execute() throws CommandExecutionFailedException {
-        logger.debug("executing a ROTATE command");
+        logger.debug("executing a LEFT/RIGHT command");
         try {
             robot.rotate(direction);
         } catch (InvalidStateException e) {
-            throw new CommandExecutionFailedException("ROTATE command failed", e);
+            throw new CommandExecutionFailedException("LEFT/RIGHT command failed  - "+e.getMessage(), e);
         }
     }
 

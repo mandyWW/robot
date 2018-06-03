@@ -1,26 +1,45 @@
 package com.mandy.samples.commands;
 
 import com.mandy.samples.CompassDirection;
-import com.mandy.samples.Location;
 import com.mandy.samples.Robot;
+import com.mandy.samples.exceptions.CommandExecutionFailedException;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import java.io.PrintStream;
 
-public class PlaceCommandTest {
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
-    private Robot robot = new Robot();
+public class ReportCommandTest {
+
 
     @Test
-    public void execute() {
+    public void execute_placePreviouslyIssued() throws CommandExecutionFailedException {
         // given
-        PlaceCommand placeCommand = new PlaceCommand(robot, 1,0, CompassDirection.WEST);
+        PrintStream out = mock(PrintStream.class);
+        System.setOut(out); // note this could impact other tests if run in parallel
 
-        // when
+        Robot robot = new Robot();
+
+        PlaceCommand placeCommand = new PlaceCommand(robot, 1,0, CompassDirection.WEST);
         placeCommand.execute();
 
+        // when
+        ReportCommand reportCommand = new ReportCommand(robot);
+        reportCommand.execute();
+
         // then
-        assertEquals(new Location(1, 0, CompassDirection.WEST), robot.getCurrentLocation());
+        verify(out).println("Output: 1,0,WEST");
+    }
+
+    @Test(expected = CommandExecutionFailedException.class)
+    public void execute_placeNotPreviouslyIssued() throws CommandExecutionFailedException {
+        // given
+        Robot robot = new Robot();
+
+        // when
+        ReportCommand reportCommand = new ReportCommand(robot);
+        reportCommand.execute();
     }
 
 }

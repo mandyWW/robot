@@ -1,35 +1,27 @@
 package com.mandy.samples.commands;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.powermock.api.mockito.PowerMockito;
-import org.powermock.core.classloader.annotations.PrepareForTest;
-import org.powermock.modules.junit4.PowerMockRunner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import java.io.PrintStream;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
-import static org.powermock.api.mockito.PowerMockito.when;
 
-@RunWith(PowerMockRunner.class)
-@PrepareForTest({LoggerFactory.class})
 public class HelpCommandTest {
 
     @Test
-    public void execute() throws Exception {
+    public void execute() {
         // given
-        Logger mockLogger = mock(Logger.class);
-        PowerMockito.mockStatic(LoggerFactory.class);
-        when(LoggerFactory.getLogger(HelpCommand.class.getName())).
-                thenReturn(mockLogger);
+        PrintStream out = mock(PrintStream.class);
+        System.setOut(out); // note this could impact other tests if run in parallel
+
         HelpCommand helpCommand = new HelpCommand();
 
         // when
         helpCommand.execute();
 
         // then
-        verify(mockLogger).info(
+        verify(out).println(
                 "\nValid commands:\n" +
                         "PLACE X,Y,F\n" +
                         "MOVE\n" +

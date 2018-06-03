@@ -31,7 +31,7 @@ public class MoveCommand extends Command {
         try {
             robot.move();
         } catch (InvalidStateException|OutOfBoundsException e) {
-            throw new CommandExecutionFailedException("MOVE command failed", e);
+            throw new CommandExecutionFailedException("MOVE command failed  - " + e.getMessage(), e);
         }
     }
 }

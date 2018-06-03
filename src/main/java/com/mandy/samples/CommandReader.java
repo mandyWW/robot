@@ -26,7 +26,7 @@ final class CommandReader {
 
         try (Scanner scanner = new Scanner(System.in)){
             while (true) {
-                logger.info("Enter a valid command or <?> for help: ");
+                System.out.println("Enter a valid command or <?> for help: ");
                 String input = scanner.nextLine();
 
                 if ("q".equals(input)) {
