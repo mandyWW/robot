@@ -1,8 +1,5 @@
 package com.mandy.samples;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Starting point for the Robot application.
  *
@@ -10,8 +7,6 @@ import org.slf4j.LoggerFactory;
  * @see <a href="https://github.com/mandyWW/robot">Robot application documentation</a>
  */
 public class RobotMain {
-
-    private static final Logger logger = LoggerFactory.getLogger(RobotMain.class.getName());
 
     public static void main(String[] args) {
         System.out.println("\n" +

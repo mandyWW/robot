@@ -2,8 +2,6 @@ package com.mandy.samples;
 
 import com.mandy.samples.exceptions.InvalidStateException;
 import com.mandy.samples.exceptions.OutOfBoundsException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Simulates a robot who receives commands to move across a board.
@@ -11,8 +9,6 @@ import org.slf4j.LoggerFactory;
  * @author Mandy Warren
  */
 public class Robot {
-
-    private static final Logger logger = LoggerFactory.getLogger(Robot.class.getName());
 
     private static final int MAX_ROWS = 5;
     private static final int MAX_COLUMNS = 5;

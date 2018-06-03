@@ -22,7 +22,6 @@ public final class CommandFactory {
     private static final Pattern VALID_INSTRUCTION = Pattern.compile("^(\\?|MOVE|LEFT|RIGHT|REPORT|PLACE ([0-4]),([0-4]),(NORTH|SOUTH|EAST|WEST))$");
 
     private CommandFactory() {
-
     }
 
     /**
