@@ -74,16 +74,28 @@ public class Robot {
     }
 
     /**
-     * Turns the robot in the specified direction.
+     * Turns the robot left.
      *
-     * @param direction the direction to turn
      * @throws InvalidStateException if the robot is not in the correct state
      */
-    public void rotate(Direction direction) throws InvalidStateException {
+    public void left() throws InvalidStateException {
         if (isPlaced) {
-            currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getOrientation().turn(direction));
+            currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getOrientation().left());
         } else {
-            throw new InvalidStateException("PLACE command must be issued before executing a LEFT/RIGHT command");
+            throw new InvalidStateException("PLACE command must be issued before executing a LEFT command");
+        }
+    }
+
+    /**
+     * Turns the robot right.
+     *
+     * @throws InvalidStateException if the robot is not in the correct state
+     */
+    public void right() throws InvalidStateException {
+        if (isPlaced) {
+            currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getOrientation().right());
+        } else {
+            throw new InvalidStateException("PLACE command must be issued before executing a RIGHT command");
         }
     }
 

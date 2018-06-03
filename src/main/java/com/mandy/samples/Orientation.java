@@ -51,25 +51,6 @@ public enum Orientation {
 
     abstract Orientation right();
 
-    /**
-     * Determines the Orientation pointed to after a right or left turn.
-     *
-     * @param direction whether this is a right or left turn
-     * @return the Orientation pointed to after a right or left turn.
-     */
-    public Orientation turn(Direction direction) {
-
-        switch (direction) {
-            case LEFT:
-                return this.left();
-            case RIGHT:
-                return this.right();
-            default:
-                throw new IllegalArgumentException("Unexpected direction");
-        }
-
-    }
-
     @Override
     public String toString() {
         return (this.name());

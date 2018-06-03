@@ -28,40 +28,49 @@ public class RobotTest {
     }
 
     @Test
-    public void rotate_left() throws InvalidStateException {
+    public void left() throws InvalidStateException {
         //given
         Robot robot = new Robot();
         Location location = new Location(3,4, Orientation.EAST);
         robot.place(location);
 
         //when
-        robot.rotate(Direction.LEFT);
+        robot.left();
 
         // then
         assertEquals(new Location(3, 4, Orientation.NORTH), robot.getCurrentLocation());
     }
 
     @Test
-    public void rotate_right() throws InvalidStateException {
+    public void right() throws InvalidStateException {
         //given
         Robot robot = new Robot();
         Location location = new Location(3,4, Orientation.EAST);
         robot.place(location);
 
         //when
-        robot.rotate(Direction.RIGHT);
+        robot.right();
 
         // then
         assertEquals(new Location(3, 4, Orientation.SOUTH), robot.getCurrentLocation());
     }
 
     @Test(expected = InvalidStateException.class)
-    public void rotate_noPreviousPlace() throws InvalidStateException {
+    public void left_noPreviousPlace() throws InvalidStateException {
         //given
         Robot robot = new Robot();
 
         //when
-        robot.rotate(Direction.RIGHT);
+        robot.left();
+    }
+
+    @Test(expected = InvalidStateException.class)
+    public void right_noPreviousPlace() throws InvalidStateException {
+        //given
+        Robot robot = new Robot();
+
+        //when
+        robot.right();
     }
 
     @Test

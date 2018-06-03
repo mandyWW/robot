@@ -1,7 +1,6 @@
 package com.mandy.samples.commands;
 
 import com.mandy.samples.Orientation;
-import com.mandy.samples.Direction;
 import com.mandy.samples.Robot;
 import com.mandy.samples.exceptions.UnsupportedCommandException;
 import org.slf4j.Logger;
@@ -50,8 +49,10 @@ public final class CommandFactory {
                         command = new ReportCommand(robot);
                         break;
                     case "LEFT":
+                        command = new LeftCommand(robot);
+                        break;
                     case "RIGHT":
-                        command = new RotateCommand(robot, Direction.valueOf(groupOne));
+                        command = new RightCommand(robot);
                         break;
                     case "MOVE":
                         command = new MoveCommand(robot);

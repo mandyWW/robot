@@ -1,6 +1,5 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.Direction;
 import com.mandy.samples.Robot;
 import com.mandy.samples.exceptions.UnsupportedCommandException;
 import org.junit.Test;
@@ -58,7 +57,7 @@ public class CommandFactoryTest {
     }
 
     @Test
-    public void make_rotateRightCommand() throws UnsupportedCommandException {
+    public void make_rightCommand() throws UnsupportedCommandException {
         // given
         Robot robot = new Robot();
 
@@ -66,9 +65,19 @@ public class CommandFactoryTest {
         Command command = CommandFactory.make("RIGHT", robot);
 
         // then
-        assertEquals(RotateCommand.class, command.getClass());
-        assertEquals(Direction.RIGHT, ((RotateCommand)command).getDirection());
+        assertEquals(RightCommand.class, command.getClass());
+    }
 
+    @Test
+    public void make_leftCommand() throws UnsupportedCommandException {
+        // given
+        Robot robot = new Robot();
+
+        // when
+        Command command = CommandFactory.make("LEFT", robot);
+
+        // then
+        assertEquals(LeftCommand.class, command.getClass());
     }
 
     @Test(expected = UnsupportedCommandException.class)
