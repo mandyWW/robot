@@ -8,9 +8,8 @@ See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 ## How to build and run the application
 Ensure you have the maven command line tools installed.
 
-Run `mvn clean install` to compile the code, run the associated unit tests and create the required binaries.
-
-Run the main class `RobotMain`.
+Run `mvn clean install`. 
+Run `java -jar target/robot-1.0-SNAPSHOT-jar-with-dependencies.jar` from the `target` directory.
 
 ## How to play
 Enter commands (via stdin) in the following form:
