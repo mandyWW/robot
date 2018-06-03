@@ -8,7 +8,7 @@ See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 ## How to build and run the application
 Ensure you have the maven command line tools installed.
 
-Run `mvn install` to compile the code, run the associated unit tests and create the required binaries.
+Run `mvn clean install` to compile the code, run the associated unit tests and create the required binaries.
 
 Run the main class `RobotMain`.
 
