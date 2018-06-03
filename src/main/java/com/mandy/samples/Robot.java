@@ -10,9 +10,6 @@ import com.mandy.samples.exceptions.OutOfBoundsException;
  */
 public class Robot {
 
-    private static final int MAX_ROWS = 5;
-    private static final int MAX_COLUMNS = 5;
-
     private Location currentLocation;
     private boolean isPlaced = false;
 
@@ -34,56 +31,67 @@ public class Robot {
      */
     public void move() throws InvalidStateException, OutOfBoundsException {
         if (isPlaced) {
-            CompassDirection compassDirection = currentLocation.getCompassDirection();
+            Orientation orientation = currentLocation.getOrientation();
             int currentYCoord = currentLocation.getYCoord();
             int currentXCoord = currentLocation.getXCoord();
 
-            switch (compassDirection) {
+            switch (orientation) {
                 case NORTH:
-                    if (currentYCoord + 1 < MAX_ROWS) {
-                        currentLocation = new Location(currentXCoord, currentYCoord + 1, currentLocation.getCompassDirection());
+                    if (Board.isValid(currentXCoord, currentYCoord + 1)) {
+                        currentLocation = new Location(currentXCoord, currentYCoord + 1, currentLocation.getOrientation());
                     } else {
                         throw new OutOfBoundsException("robot cannot move any further NORTH");
                     }
                     break;
                 case SOUTH:
-                    if (currentYCoord - 1 >= 0) {
-                        currentLocation = new Location(currentXCoord, currentYCoord - 1, currentLocation.getCompassDirection());
+                    if (Board.isValid(currentXCoord, currentYCoord - 1)) {
+                        currentLocation = new Location(currentXCoord, currentYCoord - 1, currentLocation.getOrientation());
                     } else {
                         throw new OutOfBoundsException("robot cannot move any further SOUTH");
                     }
                     break;
                 case EAST:
-                    if (currentXCoord + 1 < MAX_COLUMNS) {
-                        currentLocation = new Location(currentXCoord + 1, currentYCoord, currentLocation.getCompassDirection());
+                    if (Board.isValid(currentXCoord + 1 , currentYCoord)) {
+                        currentLocation = new Location(currentXCoord + 1, currentYCoord, currentLocation.getOrientation());
                     } else {
                         throw new OutOfBoundsException("robot cannot move any further EAST");
 
                     }
                     break;
                 case WEST:
-                    if (currentXCoord - 1 >= 0) {
-                        currentLocation = new Location(currentXCoord - 1, currentYCoord, currentLocation.getCompassDirection());
+                    if (Board.isValid(currentXCoord - 1 , currentYCoord)) {
+                        currentLocation = new Location(currentXCoord - 1, currentYCoord, currentLocation.getOrientation());
                     } else {
                         throw new OutOfBoundsException("robot cannot move any further WEST");
                     }
                     break;
                 default:
-                    throw new IllegalArgumentException("unexpected compass direction");
+                    throw new IllegalArgumentException("unexpected orientation");
             }
         } else {
             throw new InvalidStateException("PLACE command must be issued before executing a MOVE command");
         }
     }
 
+    /**
+     * Turns the robot in the specified direction.
+     *
+     * @param direction the direction to turn
+     * @throws InvalidStateException if the robot is not in the correct state
+     */
     public void rotate(Direction direction) throws InvalidStateException {
         if (isPlaced) {
-            currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getCompassDirection().turn(direction));
+            currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getOrientation().turn(direction));
         } else {
             throw new InvalidStateException("PLACE command must be issued before executing a LEFT/RIGHT command");
         }
     }
 
+    /**
+     * Outputs the position of the robot
+     *
+     * @throws InvalidStateException if the robot is not in the correct state
+     */
     public void report() throws InvalidStateException {
         if (isPlaced) {
             System.out.println("Output: " + currentLocation.toString());
@@ -91,7 +99,6 @@ public class Robot {
             throw new InvalidStateException("PLACE command must be issued before executing a REPORT command");
         }
     }
-
 
     public Location getCurrentLocation() {
         return currentLocation;
