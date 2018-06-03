@@ -7,24 +7,24 @@ import com.mandy.samples.exceptions.UnsupportedCommandException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- * Receives commands from standard input
+ * Receives input from an input stream.
  *
  * @author Mandy Warren
  */
-final class CommandReader {
-    private static final Logger logger = LoggerFactory.getLogger(CommandReader.class.getName());
+final class InputReader {
+    private static final Logger logger = LoggerFactory.getLogger(InputReader.class.getName());
 
-    private CommandReader() {
-
+    private InputReader() {
     }
 
-    static void read() {
+    static void read(InputStream inputStream) {
         Robot robot = new Robot();
 
-        try (Scanner scanner = new Scanner(System.in)){
+        try (Scanner scanner = new Scanner(inputStream)){
             while (true) {
                 System.out.println("Enter a valid command or <?> for help: ");
                 String input = scanner.nextLine();

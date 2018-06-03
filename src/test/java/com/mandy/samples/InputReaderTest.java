@@ -15,7 +15,7 @@ import static org.mockito.Mockito.*;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({InputReader.class, Scanner.class, CommandFactory.class, PlaceCommand.class, UnsupportedCommandException.class})
-public class CommandReaderTest {
+public class InputReaderTest {
 
     @Test
     public void read_validInput() throws Exception {
