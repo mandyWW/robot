@@ -6,7 +6,7 @@ The robot is free to roam around the surface of the table, but cannot fall to de
 See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 
 ## How to build and run the application
-Ensure you have the [maven command line tools](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) installed.
+Ensure you have the [maven command line tools](https://maven.apache.org/guides/getting-started/maven-in-five-minutes.html) and Java 1.8 installed.
 
 Run `mvn clean install` <br>
 Run `java -jar target/robot-1.0-SNAPSHOT-jar-with-dependencies.jar` from the `target` directory.
