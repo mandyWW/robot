@@ -38,4 +38,8 @@ public class RotateCommand extends Command {
         }
     }
 
+    public Direction getDirection() {
+        return direction;
+    }
+
 }
