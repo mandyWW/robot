@@ -1,6 +1,6 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.CompassDirection;
+import com.mandy.samples.Orientation;
 import com.mandy.samples.Direction;
 import com.mandy.samples.Robot;
 import com.mandy.samples.exceptions.UnsupportedCommandException;
@@ -43,7 +43,7 @@ public final class CommandFactory {
             String groupOne = matcher.group(0);
             if (groupOne.startsWith("PLACE")) {
                 // parsing of String to int is safe due to the use of the regex..
-                command = new PlaceCommand(robot, Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), CompassDirection.valueOf(matcher.group(4)));
+                command = new PlaceCommand(robot, Integer.parseInt(matcher.group(2)), Integer.parseInt(matcher.group(3)), Orientation.valueOf(matcher.group(4)));
             } else {
                 switch (groupOne) {
                     case "REPORT":

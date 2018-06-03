@@ -1,6 +1,6 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.CompassDirection;
+import com.mandy.samples.Orientation;
 import com.mandy.samples.Location;
 import com.mandy.samples.Robot;
 import org.slf4j.Logger;
@@ -24,11 +24,11 @@ public class PlaceCommand extends Command {
      * @param robot the robot being placed
      * @param xCoord the x coordinate
      * @param yCoord the y coordinate
-     * @param compassDirection the direction to face
+     * @param orientation the direction to face
      */
-    PlaceCommand(Robot robot, int xCoord, int yCoord, CompassDirection compassDirection) {
+    PlaceCommand(Robot robot, int xCoord, int yCoord, Orientation orientation) {
         super(robot);
-        location = new Location(xCoord, yCoord, compassDirection);
+        location = new Location(xCoord, yCoord, orientation);
     }
 
     @Override

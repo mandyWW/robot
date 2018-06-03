@@ -11,19 +11,19 @@ public class Location {
 
     private int xCoord;
     private int yCoord;
-    private CompassDirection compassDirection;
+    private Orientation orientation;
 
     /**
      * Constructs a new Location with the specified detail.
      *
      * @param xCoord the x coordinate
      * @param yCoord the y coordinate
-     * @param compassDirection the compass direction
+     * @param orientation the compass direction
      */
-    public Location(int xCoord, int yCoord, CompassDirection compassDirection) {
+    public Location(int xCoord, int yCoord, Orientation orientation) {
         this.xCoord = xCoord;
         this.yCoord = yCoord;
-        this.compassDirection = compassDirection;
+        this.orientation = orientation;
     }
 
     public int getXCoord() {
@@ -34,8 +34,8 @@ public class Location {
         return yCoord;
     }
 
-    public CompassDirection getCompassDirection() {
-        return compassDirection;
+    public Orientation getOrientation() {
+        return orientation;
     }
 
     @Override
@@ -47,17 +47,17 @@ public class Location {
         }
         Location location = (Location) o;
         return xCoord == location.xCoord && yCoord == location.yCoord &&
-                Objects.equals(compassDirection, location.compassDirection);
+                Objects.equals(orientation, location.orientation);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(xCoord, yCoord, compassDirection);
+        return Objects.hash(xCoord, yCoord, orientation);
     }
 
     @Override
     public String toString() {
-        return(xCoord +","+ yCoord + "," + compassDirection);
+        return(xCoord +","+ yCoord + "," + orientation);
     }
 
 
