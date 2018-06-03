@@ -19,7 +19,6 @@ public class RobotMain {
                         "              __/ |                                                                               \n" +
                         "             |___/   ");
 
-        CommandReader.read();
-
+        InputReader.read(System.in);
     }
 }
