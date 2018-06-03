@@ -20,6 +20,8 @@ Enter commands (via stdin) in the following form:
 * LEFT
 * RIGHT
 * REPORT
+* q - quit the application
+* ? - display the list of valid commands
 
 PLACE will put the toy robot on the table in position X,Y and facing NORTH, SOUTH, EAST or WEST.<br>  
 The origin (0,0) is considered to be the SOUTH WEST most corner.<br>  
@@ -29,8 +31,7 @@ MOVE will move the toy robot one unit forward in the compass direction it is cur
 LEFT and RIGHT will rotate the robot 90 degrees in the specified compass direction without changing the position of the robot.<br>
 REPORT will output the X,Y and F of the robot.<br>  
 
-* q will quit the application<br>
-* ? will display the list of valid commands
+
 
 ### Example input and output
 * PLACE 0,0,NORTH
