@@ -21,6 +21,7 @@
         <mockito.version>2.8.9</mockito.version>
         <powermock.version>1.7.1</powermock.version>
         <jacoco.version>0.8.1</jacoco.version>
+        <commons.version>3.7</commons.version>
     </properties>
 
     <build>
@@ -67,11 +68,17 @@
         </plugins>
     </build>
     <dependencies>
+        <!-- logging dependency -->
         <dependency>
-            <!-- logging dependencies -->
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>${logback.version}</version>
+        </dependency>
+        <!-- apache commons for utilities -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.version}</version>
         </dependency>
         <!-- test dependencies -->
         <dependency>
