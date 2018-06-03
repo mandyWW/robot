@@ -47,12 +47,12 @@ public enum Orientation {
         }
     };
 
-    public abstract Orientation left();
+    abstract Orientation left();
 
-    public abstract Orientation right();
+    abstract Orientation right();
 
     /**
-     * Determins the Orientation pointed to after a right or left turn.
+     * Determines the Orientation pointed to after a right or left turn.
      *
      * @param direction whether this is a right or left turn
      * @return the Orientation pointed to after a right or left turn.

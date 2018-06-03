@@ -12,6 +12,9 @@ final class Board {
     private static final Range<Integer> XCOORD_RANGE = Range.between(0, 4);
     private static final Range<Integer> YCOORD_RANGE = Range.between(0, 4);
 
+    private Board() {
+    }
+
     /**
      * Returns true if the xCoord and yCoord are in the valid range.
      *

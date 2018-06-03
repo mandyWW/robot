@@ -16,7 +16,7 @@ public class RotateCommand extends Command {
 
     private static final Logger logger = LoggerFactory.getLogger(RotateCommand.class.getName());
 
-    private Direction direction;
+    private final Direction direction;
 
     /**
      * Constructs a new RotateCommand for the robot, specifying the direction to rotate

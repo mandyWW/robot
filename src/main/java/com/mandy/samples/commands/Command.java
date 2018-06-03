@@ -11,7 +11,7 @@ import com.mandy.samples.exceptions.CommandExecutionFailedException;
  */
 public abstract class Command {
 
-    Robot robot;
+    final Robot robot;
 
     Command(Robot robot) {
         this.robot = robot;

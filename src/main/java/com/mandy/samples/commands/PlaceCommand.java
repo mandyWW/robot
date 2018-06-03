@@ -16,7 +16,7 @@ public class PlaceCommand extends Command {
 
     private static final Logger logger = LoggerFactory.getLogger(PlaceCommand.class.getName());
 
-    private Location location;
+    private final Location location;
 
     /**
      * Constructs a new PlaceCommand for the robot, specifying the x and y coordinates and the direction to face.

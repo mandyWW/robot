@@ -7,5 +7,5 @@ package com.mandy.samples;
  */
 public enum Direction {
 
-    LEFT, RIGHT;
+    LEFT, RIGHT
 }

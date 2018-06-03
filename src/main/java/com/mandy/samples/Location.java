@@ -9,9 +9,9 @@ import java.util.Objects;
  */
 public class Location {
 
-    private int xCoord;
-    private int yCoord;
-    private Orientation orientation;
+    private final int xCoord;
+    private final int yCoord;
+    private final Orientation orientation;
 
     /**
      * Constructs a new Location with the specified detail.
