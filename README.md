@@ -12,7 +12,7 @@ Run `mvn clean install` <br>
 Run `java -jar target/robot-1.0-SNAPSHOT-jar-with-dependencies.jar` from the `target` directory.
 
 ## How to play
-Enter commands (via stdin) in the following form:
+Enter commands in the following form:
 
 * PLACE X,Y,F
 * MOVE
