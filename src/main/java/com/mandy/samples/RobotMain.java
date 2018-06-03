@@ -8,6 +8,11 @@ package com.mandy.samples;
  */
 public class RobotMain {
 
+    /**
+     * Main application starting point.
+     *
+     * @param args any arguments required by the application
+     */
     public static void main(String[] args) {
         System.out.println("\n" +
                         "  _______            _____       _           _      _____ _                 _       _             \n" +

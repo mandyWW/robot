@@ -7,6 +7,11 @@ package com.mandy.samples.exceptions;
  */
 public class UnsupportedCommandException extends Exception {
 
+    /**
+     * Constructs a new instance with the specified detail.
+     *
+     * @param message the message
+     */
     public UnsupportedCommandException(String message) {
         super(message);
     }

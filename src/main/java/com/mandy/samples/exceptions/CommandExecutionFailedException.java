@@ -7,6 +7,12 @@ package com.mandy.samples.exceptions;
  */
 public class CommandExecutionFailedException extends Exception {
 
+    /**
+     * Constructs a new instance with the specified detail.
+     *
+     * @param message the message
+     * @param e the exception
+     */
     public CommandExecutionFailedException(String message, Exception e) {
         super(message, e);
     }

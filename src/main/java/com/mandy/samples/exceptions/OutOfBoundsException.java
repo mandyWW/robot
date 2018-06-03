@@ -7,6 +7,11 @@ package com.mandy.samples.exceptions;
  */
 public class OutOfBoundsException extends Exception {
 
+    /**
+     * Constructs a new instance with the specified detail.
+     *
+     * @param message the message
+     */
     public OutOfBoundsException(String message) {
         super(message);
     }
