@@ -8,7 +8,7 @@ See https://github.com/mandyWW/robot/wiki/Robot-Application-Design
 ## How to build and run the application
 Ensure you have the maven command line tools installed.
 
-Run `mvn clean install` 
+Run `mvn clean install` <br>
 Run `java -jar target/robot-1.0-SNAPSHOT-jar-with-dependencies.jar` from the `target` directory.
 
 ## How to play
