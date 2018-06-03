@@ -69,7 +69,7 @@ public class Robot {
                     throw new IllegalArgumentException("unexpected orientation");
             }
         } else {
-            throw new InvalidStateException("PLACE command must be issued before executing a MOVE command");
+            throw new InvalidStateException("Robot must be placed before moving");
         }
     }
 
@@ -82,7 +82,7 @@ public class Robot {
         if (isPlaced) {
             currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getOrientation().left());
         } else {
-            throw new InvalidStateException("PLACE command must be issued before executing a LEFT command");
+            throw new InvalidStateException("Robot must be placed before turning left");
         }
     }
 
@@ -95,7 +95,7 @@ public class Robot {
         if (isPlaced) {
             currentLocation = new Location(currentLocation.getXCoord(), currentLocation.getYCoord(), currentLocation.getOrientation().right());
         } else {
-            throw new InvalidStateException("PLACE command must be issued before executing a RIGHT command");
+            throw new InvalidStateException("Robot must be placed before turning right");
         }
     }
 
@@ -108,7 +108,7 @@ public class Robot {
         if (isPlaced) {
             System.out.println("Output: " + currentLocation.toString());
         } else {
-            throw new InvalidStateException("PLACE command must be issued before executing a REPORT command");
+            throw new InvalidStateException("Robot must be placed before reporting");
         }
     }
 

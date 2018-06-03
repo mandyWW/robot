@@ -1,7 +1,7 @@
 package com.mandy.samples;
 
 /**
- * Represents a point on a compass
+ * Represents a point on a compass.
  *
  * @author Mandy Warren
  */

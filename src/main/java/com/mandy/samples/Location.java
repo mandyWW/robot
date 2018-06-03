@@ -3,7 +3,7 @@ package com.mandy.samples;
 import java.util.Objects;
 
 /**
- * Represents a position on a square tabletop.
+ * Represents a position on a board.
  *
  * @author Mandy Warren
  */

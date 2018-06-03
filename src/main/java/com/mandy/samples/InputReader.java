@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.Scanner;
 
 /**
- * Receives input from an input stream.
+ * Receives input from an input stream and turns it into commands.
  *
  * @author Mandy Warren
  */
