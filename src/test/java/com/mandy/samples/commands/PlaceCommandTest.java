@@ -1,6 +1,6 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.CompassDirection;
+import com.mandy.samples.Orientation;
 import com.mandy.samples.Location;
 import com.mandy.samples.Robot;
 import org.junit.Test;
@@ -13,13 +13,13 @@ public class PlaceCommandTest {
     public void execute() {
         // given
         Robot robot = new Robot();
-        PlaceCommand placeCommand = new PlaceCommand(robot, 1,0, CompassDirection.WEST);
+        PlaceCommand placeCommand = new PlaceCommand(robot, 1,0, Orientation.WEST);
 
         // when
         placeCommand.execute();
 
         // then
-        assertEquals(new Location(1, 0, CompassDirection.WEST), robot.getCurrentLocation());
+        assertEquals(new Location(1, 0, Orientation.WEST), robot.getCurrentLocation());
     }
 
 }

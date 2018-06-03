@@ -1,6 +1,6 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.CompassDirection;
+import com.mandy.samples.Orientation;
 import com.mandy.samples.Robot;
 import com.mandy.samples.exceptions.CommandExecutionFailedException;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class ReportCommandTest {
 
         Robot robot = new Robot();
 
-        PlaceCommand placeCommand = new PlaceCommand(robot, 1,0, CompassDirection.WEST);
+        PlaceCommand placeCommand = new PlaceCommand(robot, 1,0, Orientation.WEST);
         placeCommand.execute();
 
         // when

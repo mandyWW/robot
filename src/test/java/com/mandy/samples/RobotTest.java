@@ -17,7 +17,7 @@ public class RobotTest {
     public void place() {
         //given
         Robot robot = new Robot();
-        Location location = new Location(3,4, CompassDirection.EAST);
+        Location location = new Location(3,4, Orientation.EAST);
 
         //when
         robot.place(location);
@@ -31,28 +31,28 @@ public class RobotTest {
     public void rotate_left() throws InvalidStateException {
         //given
         Robot robot = new Robot();
-        Location location = new Location(3,4, CompassDirection.EAST);
+        Location location = new Location(3,4, Orientation.EAST);
         robot.place(location);
 
         //when
         robot.rotate(Direction.LEFT);
 
         // then
-        assertEquals(new Location(3, 4, CompassDirection.NORTH), robot.getCurrentLocation());
+        assertEquals(new Location(3, 4, Orientation.NORTH), robot.getCurrentLocation());
     }
 
     @Test
     public void rotate_right() throws InvalidStateException {
         //given
         Robot robot = new Robot();
-        Location location = new Location(3,4, CompassDirection.EAST);
+        Location location = new Location(3,4, Orientation.EAST);
         robot.place(location);
 
         //when
         robot.rotate(Direction.RIGHT);
 
         // then
-        assertEquals(new Location(3, 4, CompassDirection.SOUTH), robot.getCurrentLocation());
+        assertEquals(new Location(3, 4, Orientation.SOUTH), robot.getCurrentLocation());
     }
 
     @Test(expected = InvalidStateException.class)
@@ -71,7 +71,7 @@ public class RobotTest {
         System.setOut(out); // note this could impact other tests if run in parallel
 
         Robot robot = new Robot();
-        Location location = new Location(1,2, CompassDirection.WEST);
+        Location location = new Location(1,2, Orientation.WEST);
         robot.place(location);
 
         //when
@@ -94,32 +94,96 @@ public class RobotTest {
     public void move_south() throws InvalidStateException, OutOfBoundsException {
         //given
         Robot robot = new Robot();
-        Location location = new Location(2,2, CompassDirection.SOUTH);
+        Location location = new Location(2,2, Orientation.SOUTH);
         robot.place(location);
 
         //when
         robot.move();
 
         // then
-        assertEquals(new Location(2, 1, CompassDirection.SOUTH), robot.getCurrentLocation());
+        assertEquals(new Location(2, 1, Orientation.SOUTH), robot.getCurrentLocation());
     }
 
     @Test(expected = OutOfBoundsException.class)
-    public void move_outOfYbounds() throws InvalidStateException, OutOfBoundsException {
+    public void move_southOutOfRange() throws InvalidStateException, OutOfBoundsException {
         //given
         Robot robot = new Robot();
-        Location location = new Location(0,0, CompassDirection.SOUTH);
+        Location location = new Location(1,0, Orientation.SOUTH);
         robot.place(location);
 
         //when
         robot.move();
     }
 
-    @Test(expected = OutOfBoundsException.class)
-    public void move_outOfXbounds() throws InvalidStateException, OutOfBoundsException {
+    @Test
+    public void move_north() throws InvalidStateException, OutOfBoundsException {
         //given
         Robot robot = new Robot();
-        Location location = new Location(0,3, CompassDirection.WEST);
+        Location location = new Location(2,2, Orientation.NORTH);
+        robot.place(location);
+
+        //when
+        robot.move();
+
+        // then
+        assertEquals(new Location(2, 3, Orientation.NORTH), robot.getCurrentLocation());
+    }
+
+    @Test(expected = OutOfBoundsException.class)
+    public void move_northOutOfRange() throws InvalidStateException, OutOfBoundsException {
+        //given
+        Robot robot = new Robot();
+        Location location = new Location(2,4, Orientation.NORTH);
+        robot.place(location);
+
+        //when
+        robot.move();
+    }
+
+    @Test
+    public void move_east() throws InvalidStateException, OutOfBoundsException {
+        //given
+        Robot robot = new Robot();
+        Location location = new Location(2,2, Orientation.EAST);
+        robot.place(location);
+
+        //when
+        robot.move();
+
+        // then
+        assertEquals(new Location(3, 2, Orientation.EAST), robot.getCurrentLocation());
+    }
+
+    @Test(expected = OutOfBoundsException.class)
+    public void move_eastOutOfRange() throws InvalidStateException, OutOfBoundsException {
+        //given
+        Robot robot = new Robot();
+        Location location = new Location(4,4, Orientation.EAST);
+        robot.place(location);
+
+        //when
+        robot.move();
+    }
+
+    @Test
+    public void move_west() throws InvalidStateException, OutOfBoundsException {
+        //given
+        Robot robot = new Robot();
+        Location location = new Location(2,2, Orientation.WEST);
+        robot.place(location);
+
+        //when
+        robot.move();
+
+        // then
+        assertEquals(new Location(1, 2, Orientation.WEST), robot.getCurrentLocation());
+    }
+
+    @Test(expected = OutOfBoundsException.class)
+    public void move_westOutOfRange() throws InvalidStateException, OutOfBoundsException {
+        //given
+        Robot robot = new Robot();
+        Location location = new Location(0,4, Orientation.WEST);
         robot.place(location);
 
         //when
@@ -130,6 +194,17 @@ public class RobotTest {
     public void move_noPreviousPlace() throws InvalidStateException, OutOfBoundsException {
         //given
         Robot robot = new Robot();
+
+        //when
+        robot.move();
+    }
+
+    @Test(expected = OutOfBoundsException.class)
+    public void move_alreadyOutOfRange() throws InvalidStateException, OutOfBoundsException {
+        //given
+        Robot robot = new Robot();
+        Location location = new Location(5,5, Orientation.WEST);
+        robot.place(location);
 
         //when
         robot.move();

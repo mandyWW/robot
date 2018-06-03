@@ -1,6 +1,6 @@
 package com.mandy.samples.commands;
 
-import com.mandy.samples.CompassDirection;
+import com.mandy.samples.Orientation;
 import com.mandy.samples.Direction;
 import com.mandy.samples.Location;
 import com.mandy.samples.Robot;
@@ -16,7 +16,7 @@ public class RotateCommandTest {
         // given
         Robot robot = new Robot();
 
-        PlaceCommand placeCommand = new PlaceCommand(robot, 3,4, CompassDirection.SOUTH);
+        PlaceCommand placeCommand = new PlaceCommand(robot, 3,4, Orientation.SOUTH);
         placeCommand.execute();
 
         // when
@@ -24,7 +24,7 @@ public class RotateCommandTest {
         rotateCommand.execute();
 
         // then
-        assertEquals(new Location(3, 4, CompassDirection.EAST), robot.getCurrentLocation());
+        assertEquals(new Location(3, 4, Orientation.EAST), robot.getCurrentLocation());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class RotateCommandTest {
         // given
         Robot robot = new Robot();
 
-        PlaceCommand placeCommand = new PlaceCommand(robot, 0,3, CompassDirection.EAST);
+        PlaceCommand placeCommand = new PlaceCommand(robot, 0,3, Orientation.EAST);
         placeCommand.execute();
 
         // when
@@ -40,7 +40,7 @@ public class RotateCommandTest {
         rotateCommand.execute();
 
         // then
-        assertEquals(new Location(0, 3, CompassDirection.SOUTH), robot.getCurrentLocation());
+        assertEquals(new Location(0, 3, Orientation.SOUTH), robot.getCurrentLocation());
     }
 
     @Test(expected = CommandExecutionFailedException.class)
