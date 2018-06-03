@@ -29,6 +29,9 @@ MOVE will move the toy robot one unit forward in the compass direction it is cur
 LEFT and RIGHT will rotate the robot 90 degrees in the specified compass direction without changing the position of the robot.<br>
 REPORT will output the X,Y and F of the robot.<br>  
 
+* q will quit the application<br>
+* ? will display the list of valid commands
+
 ### Example input and output
 * PLACE 0,0,NORTH
 * MOVE
