@@ -1,5 +1,5 @@
 /**
- * Provides the robot application
+ * Provides the robot application.
  *
  * @author Mandy Warren
  */
